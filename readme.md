@@ -7,6 +7,9 @@ for implementation refer the slides file : divRank.pdf
 * NP array provides the benefit of vectorised operations  
 
   
-The paper contains a network, test code for the network is in test_cum_divrank.py .  
+The paper contains a network(below), test code for the network is in test_cum_divrank.py .  
+
+![Alt text](reference_network_figure_1.png?raw=true "network in paper(figure 1)")
+
 To test on own network, edit the edge_dict in file test_cum_divrank.py
 
