@@ -1,6 +1,6 @@
 import numpy as np
 
-def cumDivrank(G, alpha=0.25, d=0.85, max_iter=400, tol=1.0e-5, pi_0 = None, prefer = None, pointWiseApprox=False):
+def cumDivrank(G, alpha=0.25, d=0.85, max_iter=1000, tol=1.0e-5, pi_0 = None, prefer = None, pointWiseApprox=False):
     '''
     Args:
         G: directed graph (np array of size nxn)
@@ -67,6 +67,7 @@ def cumDivrank(G, alpha=0.25, d=0.85, max_iter=400, tol=1.0e-5, pi_0 = None, pre
         visits.append(x_next)
 
     print('could not converge')
+    return x_next
 
 
 

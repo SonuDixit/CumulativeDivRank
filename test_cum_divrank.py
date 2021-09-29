@@ -27,7 +27,21 @@ edges = {
 
 G = Graph(edge_dict=edges, to_directed=False, add_self_loop=True)
 
-stat_dist = cumDivrank(G.graph, pointWiseApprox=False)
+stat_dist = cumDivrank(G.graph, pointWiseApprox=False, tol=1e-6, alpha=0.45, d=0.85)
+
+stat_dist = stat_dist.reshape(G.graph.shape[0],)
+# print(stat_dist)
+top = np.argsort(stat_dist)
+top = list(top)
+top.reverse()
+# print(top)
+for index in top:
+    print(G._int_to_nodes[index], stat_dist[index])
+G.plot(vertex_weights=stat_dist*4000, save_path='cumulative_div_rank.png')
+
+
+
+stat_dist = cumDivrank(G.graph, pointWiseApprox=True,alpha=0.45, d=0.85)
 
 stat_dist = stat_dist.reshape(G.graph.shape[0],)
 # print(stat_dist)
@@ -38,14 +52,4 @@ top.reverse()
 for index in top:
     print(G._int_to_nodes[index], stat_dist[index])
 
-
-stat_dist = cumDivrank(G.graph, pointWiseApprox=True)
-
-stat_dist = stat_dist.reshape(G.graph.shape[0],)
-# print(stat_dist)
-top = np.argsort(stat_dist)
-top = list(top)
-top.reverse()
-# print(top)
-for index in top:
-    print(G._int_to_nodes[index], stat_dist[index])
+G.plot(vertex_weights=stat_dist*4000, save_path='pointwise_div_rank.png')
