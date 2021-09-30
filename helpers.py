@@ -38,7 +38,7 @@ class Graph():
             for i in range(self.graph.shape[0]):
                 self.graph[i,i]=1.0
 
-    def plot(self, vertex_weights, save_path):
+    def plot(self, vertex_weights, save_path, figsize=(15,15)):
         '''
         Args:
             vertex_weights: required for node size in image [np array, list, or dict{id:size}]
@@ -49,7 +49,9 @@ class Graph():
         '''
         import networkx as nx
         import matplotlib.pyplot as plt
+        figure = plt.figure(figsize=figsize)
         graph = nx.from_numpy_array(self.graph, create_using=nx.DiGraph)
         nx.draw_circular(graph, node_size=vertex_weights, with_labels=True)
         plt.savefig(save_path)
+        plt.close(figure)
         pass
