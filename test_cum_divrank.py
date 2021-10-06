@@ -9,9 +9,9 @@ if not os.path.exists(plot_save_path):
 
 
 def test_on_graph(edge_dict, image_save_path='cumulative_div_rank.png', pointWiseApprox=False):
-    G = Graph(edge_dict=edge_dict, to_directed=False, add_self_loop=True)
+    G = Graph(edge_dict=edge_dict, to_directed=False, add_self_loop=True, plot_name=os.path.join(plot_save_path, 'input_graph.png'))
 
-    stat_dist = cumDivrank(G.graph, pointWiseApprox=pointWiseApprox, tol=1e-5, alpha=0.45, d=0.85)
+    stat_dist = cumDivrank(G.graph, pointWiseApprox=pointWiseApprox, tol=5e-7, alpha=0.45, d=0.85, max_iter=3000)
 
     stat_dist = stat_dist.reshape(G.graph.shape[0], )
     # print(stat_dist)
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     #         20: [5]
     # }
     test_on_graph(edge_dict=edges)
-    test_on_graph(edge_dict=edges, image_save_path='pontWise.png', pointWiseApprox=True)
+    test_on_graph(edge_dict=edges, image_save_path='pointWise.png', pointWiseApprox=True)
     # print('---test case 2-----')
     #
     # edges = {
